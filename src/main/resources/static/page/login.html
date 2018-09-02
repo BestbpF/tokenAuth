@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>	
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="../res/css/login.css">
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+</head>
+<body>
+	<form>
+	    <input type="text" name="username" id="username">
+	    <input type="password" name="password" id="password">
+	</form>
+	<input type="button" value="Login" onclick="login()">
+</body>
+<script type="text/javascript">
+function login(){
+	$.ajax({
+		url: "/tokenAuth/token",
+		dataType: "json",
+		data: {'username':$("#username").val(), 'password':$("#password").val()},
+		type:"GET",
+		success:function(res){
+			console.log(res);
+			if(res.code == 200){
+				var authStr = res.data.userId + "_" + res.data.token;
+				//把生成的token放在cookie中
+				$.cookie("authStr", authStr);
+				window.location.href = "index.html";
+			}else alert(res.msg);
+		}
+	});
+}
+</script>
+</html>
