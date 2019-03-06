@@ -3,6 +3,8 @@
 #### 项目介绍
 springboot2.x整合Redis实现简单的token登录鉴权
 
+https://www.jianshu.com/p/25402229376e
+
 #### 软件架构
 软件架构说明
 
